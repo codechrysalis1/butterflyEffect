@@ -11,9 +11,6 @@ import reducer from './reducer';
 
 const store = createStore(reducer);
 
-console.log(
-  'hello world',
-);
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
