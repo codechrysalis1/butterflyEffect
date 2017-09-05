@@ -16,11 +16,24 @@
     "redux": "^3.7.2"
   },
   "scripts": {
+    "precommit": "lint-staged",
     "server": "node ./server/bin/www",
     "client": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test:eslint": "eslint --ext=js --ext=jsx .",
+    "test:stylelint": "stylelint \"**/*.css\"",
+    "test:unit": "react-scripts test --env=jsdom",
+    "test": "npm run test:eslint && npm run test:stylelint && npm run test:unit",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
+    "stylelint": "^8.1.0",
+    "stylelint-config-standard": "^17.0.0"
+  }
 }
