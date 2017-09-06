@@ -6,7 +6,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import App from './App';
+import Home from './Home';
 import Admin from './Admin';
 
 import './styles/index.css';
@@ -26,7 +26,7 @@ ReactDOM.render(
     <MuiThemeProvider muiTheme={ muiTheme }>
       <BrowserRouter>
         <div id="router">
-          <Route exact path="/" component={App} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/admin" component={Admin} />
         </div>
       </BrowserRouter>
