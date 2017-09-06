@@ -23,7 +23,8 @@ body {
   max-width: 95%;
 }
 
-#router {
+#main {
+  height: 100%;
   flex-direction: column;
   align-items: center;
 }

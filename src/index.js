@@ -1,1 +1,1 @@
-require('./components/Router.jsx');
+require('./components/Main.jsx');

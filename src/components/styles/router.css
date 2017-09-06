@@ -1,0 +1,6 @@
+#router {
+  width: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+}

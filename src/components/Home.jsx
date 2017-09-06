@@ -5,8 +5,7 @@ import './styles/home.css';
 
 const Home = () => (
   <div id="home" className="flex restrict-width">
-    <RaisedButton className="button" label="Send Package" onClick={() => { window.location = '/send'; }} />
-    <RaisedButton className="button" label="Track Package" onClick={() => { window.location = '/track'; }} />
+    <h1>About</h1>
   </div>
 );
 

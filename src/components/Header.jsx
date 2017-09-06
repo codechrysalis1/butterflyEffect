@@ -2,23 +2,52 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
+import Divider from 'material-ui/Divider';
 
 import './styles/header.css';
 
 const Header = props => (
-  <header className="restrict-width">
-    <FlatButton label="About" />
-    <FlatButton label="Send Package" />
-    <FlatButton label="Track Package" />
+  <header className="restrict-width flex">
+    <div className="flex">
+      <FlatButton
+        label="Home"
+        primary={props.selectedPage === 'home'}
+        onClick={() => props.changePage(props.selectedPage, 'home')}
+      />
+      <FlatButton
+        label="Send Package"
+        primary={props.selectedPage === 'send'}
+        onClick={() => props.changePage(props.selectedPage, 'send')}
+      />
+      <FlatButton
+        label="Track Package"
+        primary={props.selectedPage === 'track'}
+        onClick={() => props.changePage(props.selectedPage, 'track')}
+      />
+      <div style={{ flexGrow: 1 }}/>
+      <FlatButton
+        label="Admin"
+        secondary={props.selectedPage === 'admin'}
+        onClick={() => props.changePage(props.selectedPage, 'admin')}
+      />
+    </div>
+    <Divider />
   </header>
 );
 
 const mapStateToProps = state => ({
-  
+  selectedPage: state.selectedPage,
 });
 
 const mapDispatchToProps = dispatch => ({
-  
+  changePage: (current, page) => {
+    if(current !== page) {
+      dispatch({
+        type: 'CHANGE_PAGE',
+        page,
+      });
+    }
+  },
 });
 
 Header.propTypes = {
