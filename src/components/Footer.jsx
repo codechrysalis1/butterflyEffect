@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Footer = props => (
+const Footer = () => (
   <footer style={{ height: '10%', display: 'flex', alignItems: 'center' }}>
-    code chrysalis
+    Code Chrysalis © 2017
   </footer>
 );
 

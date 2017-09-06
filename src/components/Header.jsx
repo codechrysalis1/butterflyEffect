@@ -24,7 +24,7 @@ const Header = props => (
         primary={props.selectedPage === 'track'}
         onClick={() => props.changePage(props.selectedPage, 'track')}
       />
-      <div style={{ flexGrow: 1 }}/>
+      <div style={{ flexGrow: 1 }} />
       <FlatButton
         label="Admin"
         secondary={props.selectedPage === 'admin'}
@@ -41,7 +41,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changePage: (current, page) => {
-    if(current !== page) {
+    if (current !== page) {
       dispatch({
         type: 'CHANGE_PAGE',
         page,
@@ -51,7 +51,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Header.propTypes = {
-  
+  selectedPage: PropTypes.string.isRequired,
+  changePage: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

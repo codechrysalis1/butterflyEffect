@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Track from './Track';
 import Home from './Home';
@@ -10,7 +11,7 @@ import './styles/router.css';
 const Router = props => (
   <div id="router" className="flex">
     {(() => {
-      switch(props.selectedPage) {
+      switch (props.selectedPage) {
         case 'home':
           return <Home />;
         case 'track':
@@ -27,5 +28,9 @@ const Router = props => (
 const mapStateToProps = state => ({
   selectedPage: state.selectedPage,
 });
+
+Router.propTypes = {
+  selectedPage: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps, null)(Router);
