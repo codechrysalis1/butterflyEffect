@@ -62,10 +62,10 @@ class DroneController {
     let dis = {}
     let current = 'source'
     let pathParrent = {}
-    
+    let maxStep = unvisited.length + 1;
     dis[current] = 0
     
-    while (true) {
+    while (maxStep--) {
       for (let adj in this.graph[current]) {
         if (dis[adj] === undefined || dis[adj] > dis[current] + this.distance(this.stations[current], this.stations[adj])) {
           dis[adj] = dis[current] + this.distance(this.stations[current], this.stations[adj])
@@ -103,7 +103,7 @@ class DroneController {
 
 //simple exapmle of how to use it
 let source = {lat: "35.664390", lng:"139.769869"}
-let destination = {lat: "35.664738", lng:"139.737167"}
+let destination = {lat: "35.70637741", lng:"139.7845459"}
 let options = {
   MAX_DISTANCE: 2
 }
