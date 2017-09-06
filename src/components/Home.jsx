@@ -3,8 +3,9 @@ import React from 'react';
 import './styles/home.css';
 
 const Home = () => (
-  <div id="home" className="flex restrict-width">
-    <h1>About</h1>
+  <div id="home" className="restrict-width">
+    <h1>Airborne</h1>
+    <p>World's first autonomous drone delivery system.</p>
   </div>
 );
 
