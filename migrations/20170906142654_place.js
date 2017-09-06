@@ -2,8 +2,8 @@
 exports.up = function (knex) {
   return knex.schema.createTable('place', (t) => {
     t.increments().index();
-    t.float('latitude');
-    t.float('longitude');
+    t.decimal('latitude', 12, 8);
+    t.decimal('longitude', 12, 8);
     t.text('type');
   });
 };
