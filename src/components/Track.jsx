@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withGoogleMap, GoogleMap } from "react-google-maps";
 
-import './styles/admin.css';
+import './styles/track.css';
 
 const TrackMap = withGoogleMap(props => {
   return (
@@ -16,9 +16,9 @@ const TrackMap = withGoogleMap(props => {
 class Track extends Component {
   render() {
     return (
-      <div >
+      <div id="map" >
         <TrackMap
-          containerElement={ <div style={{ height: `1000px`,width:"1000px" }} /> }
+          containerElement={ <div style={{ height: `100%`,width:'100%' }} /> }
           mapElement={ <div style={{ height: `100%` }} /> }
           mapCenter={ this.props.mapCenter }
         />
