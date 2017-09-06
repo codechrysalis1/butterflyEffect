@@ -1,4 +1,4 @@
-# butterflyEffect
+# Butterfly Effect
 
 ## Summary
 
