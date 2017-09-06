@@ -1,11 +1,6 @@
 #dashboard {
+  height: 0;
   width: 100%;
-  height: 100%;
-}
-
-.admin-search-pane {
-  position: fixed !important;
-  top: 10px;
-  left: 10px;
-  padding: 0 5px;
+  flex-grow: 1;
+  padding-top: 10px;
 }

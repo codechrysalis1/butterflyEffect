@@ -14,21 +14,6 @@ const Admin = props => (
       mapElement={<div style={{ height: '100%' }} />}
       mapCenter={props.mapCenter}
     />
-    <Paper className="admin-search-pane" zDepth={2} >
-      <TextField
-        hintText="Search location..."
-      />
-      {(() => {
-        if (props.selectedDrone) {
-          return (
-            <div>
-              Drone Data
-            </div>
-          );
-        }
-        return <div />;
-      })()}
-    </Paper>
   </div>
 );
 
