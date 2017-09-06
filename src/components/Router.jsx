@@ -18,12 +18,12 @@ const store = createStore(reducer);
 const muiTheme = getMuiTheme({
   palette: {
 
-  }
+  },
 });
 
 ReactDOM.render(
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={ muiTheme }>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <BrowserRouter>
         <div id="router" className="flex">
           <Route exact path="/" component={Home} />
