@@ -7,6 +7,7 @@ import TextField from 'material-ui/TextField';
 
 import './styles/admin.css';
 
+<<<<<<< HEAD
 const AdminMap = withGoogleMap(props => (
   <GoogleMap
     defaultZoom={10}
@@ -20,6 +21,14 @@ const Admin = props => (
       containerElement={<div style={{ height: '100%' }} />}
       mapElement={<div style={{ height: '100%' }} />}
       mapCenter={props.mapCenter}
+=======
+
+const AdminMap = withGoogleMap(props => {
+  return (
+    <GoogleMap 
+      defaultZoom={10}
+      center={ props.mapCenter }
+>>>>>>> master
     />
     <Paper className="admin-search-pane" zDepth={2} >
       <TextField
