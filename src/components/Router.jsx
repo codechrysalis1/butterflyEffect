@@ -8,6 +8,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import App from './App';
 import Admin from './Admin';
+import Track from './Track'
 
 import './styles/index.css';
 
@@ -28,6 +29,7 @@ ReactDOM.render(
         <div id="router">
           <Route exact path="/" component={App} />
           <Route exact path="/admin" component={Admin} />
+          <Route exact path="/track" component={Track} />
         </div>
       </BrowserRouter>
     </MuiThemeProvider>
