@@ -18,3 +18,9 @@
   left: 10px;
   bottom: 10px;
 }
+
+.setting-pane {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}

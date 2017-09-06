@@ -6,6 +6,8 @@ import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import Paper from 'material-ui/Paper';
 import Icon from 'material-ui/SvgIcon';
 import Drawer from 'material-ui/Drawer';
+import Divider from 'material-ui/Divider';
+import Checkbox from 'material-ui/Checkbox';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import './styles/admin.css';
@@ -41,6 +43,15 @@ const Admin = props => (
       open={props.settingPaneOpen}
       onRequestChange={props.toggleSettingPane}
     >
+      <Paper className="setting-pane">
+        <p>Settings</p>
+        <Divider style={{ marginTop: '10px', marginBottom: '10px', }} />
+        <Checkbox
+          label="Show Stations"
+          checked={props.showStations}
+          onCheck={props.toggleStations}
+        />
+      </Paper>
     </Drawer>
   </div>
 );
