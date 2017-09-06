@@ -1,11 +1,11 @@
-var express = require('express');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-var api = require('./routes/api');
+const api = require('./routes/api');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -15,8 +15,8 @@ app.use(cookieParser());
 app.use('/api', api);
 
 // catch 404 error
-app.use(function(req, res) {
-  res.json({ type: "error", status: 404, message: "Page Not Found" });
+app.use((req, res) => {
+  res.json({ type: 'error', status: 404, message: 'Page Not Found' });
 });
 
 module.exports = app;
