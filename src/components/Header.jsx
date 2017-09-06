@@ -18,12 +18,12 @@ const Header = props => (
         onClick={() => props.changePage(props.selectedPage, 'home')}
       />
       <FlatButton
-        label="Send Package"
+        label="Send"
         primary={props.selectedPage === 'send'}
         onClick={() => props.changePage(props.selectedPage, 'send')}
       />
       <FlatButton
-        label="Track Package"
+        label="Track"
         primary={props.selectedPage === 'track'}
         onClick={() => props.changePage(props.selectedPage, 'track')}
       />
