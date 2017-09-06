@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withGoogleMap, GoogleMap } from "react-google-maps";
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
 
 import './styles/admin.css';
 
@@ -22,6 +24,19 @@ class Admin extends Component {
           mapElement={ <div style={{ height: `100%` }} /> }
           mapCenter={ this.props.mapCenter }
         />
+        <Paper className="admin-search-pane" zDepth={2} >
+          <TextField
+            hintText="Search location..."
+          />
+          {(() => {
+            if (this.props.selectedDrone) {
+              return (
+                <div>
+                </div>
+              );
+            }
+          })()}
+        </Paper>
       </div>
     )
   }
@@ -29,7 +44,8 @@ class Admin extends Component {
 
 const mapStateToProps = state => {
   return {
-    mapCenter: state.mapCenter
+    mapCenter: state.mapCenter,
+    selectedDrone: state.selectedDrone,
   };
 }
 
@@ -37,7 +53,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setMapCenter: center => {
       dispatch({ type: 'SET_MAP_CENTER', center });
-    }
+    },
   };
 }
 

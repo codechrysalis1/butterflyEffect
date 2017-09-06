@@ -1,5 +1,6 @@
 const initialState = {
   mapCenter: { lat: 35.6895, lng: 139.6917 },
+  selectedDrone: null,
 };
 
 const reducer = (state = initialState, action) => {

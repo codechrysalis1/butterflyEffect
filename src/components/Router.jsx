@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { Route, BrowserRouter } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import App from './App';
 import Admin from './Admin';
@@ -13,13 +15,21 @@ import reducer from '../reducer';
 
 const store = createStore(reducer);
 
+const muiTheme = getMuiTheme({
+  palette: {
+
+  }
+});
+
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <div id="router">
-        <Route exact path="/" component={App} />
-        <Route exact path="/admin" component={Admin} />
-      </div>
-    </BrowserRouter>
+    <MuiThemeProvider muiTheme={ muiTheme }>
+      <BrowserRouter>
+        <div id="router">
+          <Route exact path="/" component={App} />
+          <Route exact path="/admin" component={Admin} />
+        </div>
+      </BrowserRouter>
+    </MuiThemeProvider>
   </Provider>, document.getElementById('root'),
 );
