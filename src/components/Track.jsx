@@ -61,7 +61,7 @@ const mapDispatchToProps = dispatch => ({
 
 Track.propTypes = {
   mapCenter: PropTypes.shape().isRequired,
-  mapStyle: PropTypes.shape().isRequired,
+  mapStyle: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Track);

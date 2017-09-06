@@ -17,8 +17,8 @@ const Admin = props => (
     <Paper className="details-pane">
       {
         props.selectedDrone ?
-        <div>drone data</div> :
-        <div>No drone selected</div>
+          <div>drone data</div> :
+          <div>No drone selected</div>
       }
     </Paper>
   </div>
@@ -47,8 +47,12 @@ const mapDispatchToProps = dispatch => ({
 
 Admin.propTypes = {
   mapCenter: PropTypes.shape().isRequired,
-  mapStyle: PropTypes.shape().isRequired,
-  selectedDrone: PropTypes.shape().isRequired,
+  mapStyle: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selectedDrone: PropTypes.shape(),
+};
+
+Admin.defaultProps = {
+  selectedDrone: null,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin);
