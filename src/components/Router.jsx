@@ -6,7 +6,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import App from './App';
+import Home from './Home';
 import Admin from './Admin';
 import Track from './Track'
 
@@ -19,15 +19,15 @@ const store = createStore(reducer);
 const muiTheme = getMuiTheme({
   palette: {
 
-  }
+  },
 });
 
 ReactDOM.render(
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={ muiTheme }>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <BrowserRouter>
-        <div id="router">
-          <Route exact path="/" component={App} />
+        <div id="router" className="flex">
+          <Route exact path="/" component={Home} />
           <Route exact path="/admin" component={Admin} />
           <Route exact path="/track" component={Track} />
         </div>
