@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Track from './Track';
 import Home from './Home';
+import Send from './Send';
+import Track from './Track';
 import Admin from './Admin';
 
 import './styles/router.css';
@@ -14,12 +15,14 @@ const Router = props => (
       switch (props.selectedPage) {
         case 'home':
           return <Home />;
+        case 'send':
+          return <Send />;
         case 'track':
           return <Track />;
         case 'admin':
           return <Admin />;
         default:
-          return <Home />;
+          return <div>Uh oh, you shouldn't be here.</div>;
       }
     })()}
   </div>

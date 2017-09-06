@@ -1,18 +1,18 @@
-#tracking-page {
+#sending-page {
   height: 0;
   flex-grow: 1;
   flex-direction: column;
 }
 
-#tracking-search-pane {
+#sending-search-pane {
   margin: 10px 0;
 }
 
-.tracking-search-button button {
+.sending-search-button button {
   height: 100% !important;
 }
 
-.tracking-number-pane {
+.sending-address-pane {
   width: auto;
   flex-grow: 1;
   padding: 0 5px;
@@ -20,11 +20,15 @@
   align-items: center;
 }
 
+.sending-address-pane p {
+  margin: 0 10px;
+}
+
 .magnify-icon {
   margin: 0 10px 0 5px;
 }
 
-.tracking-number-box {
+.sending-address-box {
   flex-grow: 1;
 }
 
