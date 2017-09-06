@@ -36,6 +36,7 @@ const Track = props => (
         containerElement={<div style={{ height: '100%', width: '100%' }} />}
         mapElement={<div style={{ height: '100%' }} />}
         mapCenter={props.mapCenter}
+        mapStyle={props.mapStyle}
       />
     </div>
   </div>
@@ -43,13 +44,15 @@ const Track = props => (
 
 const TrackMap = withGoogleMap(props => (
   <GoogleMap
-    defaultZoom={10}
+    defaultZoom={11}
     center={props.mapCenter}
+    options={{ styles: props.mapStyle }}
   />
 ));
 
 const mapStateToProps = state => ({
   mapCenter: state.mapCenter,
+  mapStyle: state.mapStyle,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -58,6 +61,7 @@ const mapDispatchToProps = dispatch => ({
 
 Track.propTypes = {
   mapCenter: PropTypes.shape().isRequired,
+  mapStyle: PropTypes.shape().isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Track);

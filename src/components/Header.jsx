@@ -10,7 +10,7 @@ const Header = props => (
   <header className="restrict-width flex">
     <div id="menu" className="flex">
       <div id="logo-container">
-        <img id="logo" src="/logo.png" />
+        <img id="logo" src="/logo.png" alt="logo" />
       </div>
       <FlatButton
         label="Home"

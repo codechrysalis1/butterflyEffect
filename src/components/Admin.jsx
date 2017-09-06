@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
 
 import './styles/admin.css';
 
@@ -13,19 +12,29 @@ const Admin = props => (
       containerElement={<div style={{ height: '100%' }} />}
       mapElement={<div style={{ height: '100%' }} />}
       mapCenter={props.mapCenter}
+      mapStyle={props.mapStyle}
     />
+    <Paper className="details-pane">
+      {
+        props.selectedDrone ?
+        <div>drone data</div> :
+        <div>No drone selected</div>
+      }
+    </Paper>
   </div>
 );
 
 const AdminMap = withGoogleMap(props => (
   <GoogleMap
-    defaultZoom={10}
+    defaultZoom={11}
     center={props.mapCenter}
+    options={{ styles: props.mapStyle }}
   />
 ));
 
 const mapStateToProps = state => ({
   mapCenter: state.mapCenter,
+  mapStyle: state.mapStyle,
   selectedDrone: state.selectedDrone,
 });
 
@@ -38,6 +47,7 @@ const mapDispatchToProps = dispatch => ({
 
 Admin.propTypes = {
   mapCenter: PropTypes.shape().isRequired,
+  mapStyle: PropTypes.shape().isRequired,
   selectedDrone: PropTypes.shape().isRequired,
 };
 
