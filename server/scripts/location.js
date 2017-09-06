@@ -10,12 +10,11 @@ const stations = ['Nishi-Funabashi', 'Yoyogi-Uehara', 'Naka-Meguro', 'Wako-shi',
 
 (async () => {
   try {
-    const fetchLocation = (station) => {
-      return fetch(`http://maps.googleapis.com/maps/api/geocode/json?address="${station}"`)
+    const fetchLocation = station =>
+      fetch(`http://maps.googleapis.com/maps/api/geocode/json?address="${station}"`)
         .then(res => res.json())
         .then(res => res)
-        .catch(err => console.log(err));
-    };
+        .catch((err) => { throw err; });
 
     const promises = stations.map(station => fetchLocation(station));
     const responses = await Promise.all(promises);
@@ -34,10 +33,10 @@ const stations = ['Nishi-Funabashi', 'Yoyogi-Uehara', 'Naka-Meguro', 'Wako-shi',
 
     fs.writeFile(LOCATION_DATA_PATH + DATA_FILE, JSON.stringify(results), (err) => {
       if (err) throw err;
-      console.log('The file has been saved!');
+      // console.error('The file has been saved!');
     });
 
   } catch (err) {
-    console.error('Error updating records', err);
+    // console.error('Error updating records', err);
   }
 })();
