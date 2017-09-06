@@ -1,7 +1,7 @@
 
 exports.up = function (knex) {
   return knex.schema.createTable('drone', (t) => {
-    t.increment().index();
+    t.increments().index();
     t.bigInteger('flytime');
     t.float('speed');
   });

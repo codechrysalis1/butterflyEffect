@@ -5,7 +5,7 @@ exports.up = function (knex) {
     t.integer('charge');
     t.integer('drone_id').unsigned().primary();
     t.foreign('drone_id').references('drone.id');
-    t.text('status');
+    t.enu('status', ['ready', 'incharge', 'flying', 'out-of-service']);
   });
 };
 exports.down = function (knex) {
