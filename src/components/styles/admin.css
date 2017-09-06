@@ -12,3 +12,9 @@
   left: 10px;
   padding: 10px;
 }
+
+.setting-button {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}

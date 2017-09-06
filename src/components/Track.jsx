@@ -17,7 +17,6 @@ const Track = props => (
       <Paper className="tracking-number-pane flex" zDepth={1}>
         <Icon className="magnify-icon">
           <path d={svgString} />
-          <path d="M0 0h24v24H0z" fill="none" />
         </Icon>
         <TextField
           className="tracking-number-box"
