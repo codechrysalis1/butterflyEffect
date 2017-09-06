@@ -4,7 +4,7 @@ exports.up = function (knex) {
     t.increments().index();
     t.decimal('latitude', 12, 8);
     t.decimal('longitude', 12, 8);
-    t.text('type');
+    t.enu('type', ['origin', 'destinition', 'station']);
   });
 };
 exports.down = function (knex) {
