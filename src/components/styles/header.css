@@ -1,6 +1,6 @@
 header {
-  height: 25%;
-  min-height: 150px;
+  height: 10%;
+  min-height: 120px;
   flex-direction: column;
   justify-content: flex-end;
 }

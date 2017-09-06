@@ -22,6 +22,7 @@ body {
 
 .restrict-width {
   width: 800px;
+  min-width: 70%;
   max-width: 95%;
 }
 
