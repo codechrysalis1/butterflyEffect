@@ -8,7 +8,10 @@ import './styles/header.css';
 
 const Header = props => (
   <header className="restrict-width flex">
-    <div className="flex">
+    <div id="menu" className="flex">
+      <div id="logo-container">
+        <img id="logo" src="/logo.png" />
+      </div>
       <FlatButton
         label="Home"
         primary={props.selectedPage === 'home'}

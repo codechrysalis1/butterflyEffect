@@ -5,6 +5,7 @@ import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import Paper from 'material-ui/Paper';
 import Icon from 'material-ui/SvgIcon';
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import './styles/track.css';
 
@@ -12,16 +13,23 @@ const svgString = 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13
 
 const Track = props => (
   <div id="tracking-page" className="flex restrict-width">
-    <Paper className="tracking-number-pane flex" zDepth={1}>
-      <Icon className="magnify-icon">
-        <path d={svgString} />
-        <path d="M0 0h24v24H0z" fill="none" />
-      </Icon>
-      <TextField
-        className="tracking-number-box"
-        hintText="Tracking Number"
+    <div id="tracking-search-pane" className="flex">
+      <Paper className="tracking-number-pane flex" zDepth={1}>
+        <Icon className="magnify-icon">
+          <path d={svgString} />
+          <path d="M0 0h24v24H0z" fill="none" />
+        </Icon>
+        <TextField
+          className="tracking-number-box"
+          hintText="Tracking Number"
+        />
+      </Paper>
+      <RaisedButton
+        primary
+        label="Search"
+        className="tracking-search-button"
       />
-    </Paper>
+    </div>
 
     <div id="track-map">
       <TrackMap

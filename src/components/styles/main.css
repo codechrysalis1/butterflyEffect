@@ -18,6 +18,8 @@ body {
 
 .flex { display: flex; }
 
+.column { flex-direction: column; }
+
 .restrict-width {
   width: 800px;
   max-width: 95%;
