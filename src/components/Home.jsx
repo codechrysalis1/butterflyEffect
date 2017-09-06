@@ -7,21 +7,23 @@ import './styles/home.css';
 class Home extends Component {
   render() {
     return (
-      <div id="home" className="">
-        <RaisedButton label="Send Package" />
-        <RaisedButton label="Track Package" />
+      <div id="home" className="flex restrict-width">
+        <RaisedButton className="button" label="Send Package" onClick={()=> window.location="/send"} />
+        <RaisedButton className="button" label="Track Package" onClick={()=> window.location="/track"} />
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
+
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+
   };
 }
 

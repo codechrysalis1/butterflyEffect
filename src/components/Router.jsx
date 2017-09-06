@@ -25,7 +25,7 @@ ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider muiTheme={ muiTheme }>
       <BrowserRouter>
-        <div id="router">
+        <div id="router" className="flex">
           <Route exact path="/" component={Home} />
           <Route exact path="/admin" component={Admin} />
         </div>
