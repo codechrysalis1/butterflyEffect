@@ -18,12 +18,18 @@ body {
 
 .flex { display: flex; }
 
+.column { flex-direction: column; }
+
+.grow { flex-grow: 1; }
+
 .restrict-width {
   width: 800px;
+  min-width: 70%;
   max-width: 95%;
 }
 
-#router {
+#main {
+  height: 100%;
   flex-direction: column;
   align-items: center;
 }

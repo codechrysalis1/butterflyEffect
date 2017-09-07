@@ -1,5 +1,6 @@
+// This is server-side code, rule is intended for client, console.error() is required.
+/* eslint-disable no-console */
 /* eslint-disable padded-blocks */
-/* eslint-disable no-console */ // This is server-side code, rule is intended for client, console.error() is required.
 const fs = require('fs');
 const fetch = require('isomorphic-fetch');
 

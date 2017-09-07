@@ -1,21 +1,25 @@
-#tracking-page {
+#sending-page {
   height: 0;
   flex-direction: column;
 }
 
-#tracking-search-pane {
+#sending-search-pane {
   margin: 10px 0;
 }
 
-.tracking-search-button button {
+.sending-search-button button {
   height: 100% !important;
 }
 
-.tracking-number-pane {
+.sending-address-pane {
   width: auto;
   padding: 0 5px;
   margin-right: 10px;
   align-items: center;
+}
+
+.sending-address-pane p {
+  margin: 0 10px;
 }
 
 .magnify-icon {

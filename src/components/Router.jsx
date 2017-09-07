@@ -1,37 +1,39 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import { Route, BrowserRouter } from 'react-router-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Home from './Home';
-import Admin from './Admin';
+import Send from './Send';
 import Track from './Track';
+import Admin from './Admin';
 
-import './styles/index.css';
+import './styles/router.css';
 
-import reducer from '../reducer';
+const Router = props => (
+  <div id="router" className="flex grow">
+    {(() => {
+      switch (props.selectedPage) {
+        case 'home':
+          return <Home />;
+        case 'send':
+          return <Send />;
+        case 'track':
+          return <Track />;
+        case 'admin':
+          return <Admin />;
+        default:
+          return <div>{'Uh oh, you shouldn\'t be here.'}</div>;
+      }
+    })()}
+  </div>
+);
 
-const store = createStore(reducer);
-
-const muiTheme = getMuiTheme({
-  palette: {
-
-  },
+const mapStateToProps = state => ({
+  selectedPage: state.selectedPage,
 });
 
-ReactDOM.render(
-  <Provider store={store}>
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <BrowserRouter>
-        <div id="router" className="flex">
-          <Route exact path="/" component={Home} />
-          <Route exact path="/admin" component={Admin} />
-          <Route exact path="/track" component={Track} />
-        </div>
-      </BrowserRouter>
-    </MuiThemeProvider>
-  </Provider>, document.getElementById('root'),
-);
+Router.propTypes = {
+  selectedPage: PropTypes.string.isRequired,
+};
+
+export default connect(mapStateToProps, null)(Router);
