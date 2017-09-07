@@ -1,7 +1,10 @@
-const express = require('express');
-const router = express.Router();
+// This is server-side code, rule is intended for client, console.error() is required.
+/* eslint-disable no-console */
 
+const express = require('express');
 const Dijkstra = require('../utils/droneController');
+
+const router = express.Router();
 
 /* GET users listing. */
 router.get('/', (req, res) => {
