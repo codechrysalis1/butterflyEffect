@@ -1,3 +1,6 @@
+// This is server-side code, rule is intended for client, console.error() is required.
+/* eslint-disable no-console */
+/* eslint-disable padded-blocks */
 const fs = require('fs');
 const db = require('../knexfile');
 
@@ -13,16 +16,25 @@ const db = require('../knexfile');
       });
     });
 
+    // TODO modify location.json to have only lat & lng
     const stations = JSON.parse(result);
-    // TODO modify location.json to having only lat & lng
-    for (const station of stations) {
+
+    const insert = item =>
+      db('place').insert(item)
+        .then(res => res)
+        .catch(err => console.error('Error inserting station location', err));
+
+    const promises = stations.map((station) => {
       const item = {};
       item.latitude = station.lat;
       item.longitude = station.lng;
       item.type = 'station';
-      await db('place').insert(item);
-    }
-  } catch(err) {
+      return insert(item);
+    });
+
+    await Promise.all(promises);
+
+  } catch (err) {
     console.error('Error updating records', err);
   }
   process.exit();
