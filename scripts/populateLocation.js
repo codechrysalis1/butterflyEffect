@@ -2,7 +2,13 @@
 /* eslint-disable no-console */
 /* eslint-disable padded-blocks */
 const fs = require('fs');
-const db = require('../knexfile');
+const knex = require('knex');
+
+const db = knex({
+  client: 'pg',
+  connection: process.env.DATABASE_URL || `postgres://${process.env.USER}@127.0.0.1:5432/air_delivery`,
+  searchPath: 'public',
+});
 
 (async () => {
   try {
