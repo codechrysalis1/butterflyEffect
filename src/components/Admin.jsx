@@ -45,7 +45,7 @@ const Admin = props => (
     >
       <Paper className="setting-pane">
         <p>Settings</p>
-        <Divider style={{ marginTop: '10px', marginBottom: '10px', }} />
+        <Divider style={{ marginTop: '10px', marginBottom: '10px' }} />
         <Checkbox
           label="Show Stations"
           checked={props.showStations}
@@ -77,7 +77,7 @@ const mapDispatchToProps = dispatch => ({
     center,
   }),
   toggleSettingPane: () => dispatch({
-    type: 'TOGGLE_SETTING'
+    type: 'TOGGLE_SETTING',
   }),
 });
 
@@ -85,6 +85,10 @@ Admin.propTypes = {
   mapCenter: PropTypes.shape().isRequired,
   mapStyle: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectedDrone: PropTypes.shape(),
+  settingPaneOpen: PropTypes.bool.isRequired,
+  toggleSettingPane: PropTypes.func.isRequired,
+  showStations: PropTypes.bool.isRequired,
+  toggleStations: PropTypes.func.isRequired,
 };
 
 Admin.defaultProps = {

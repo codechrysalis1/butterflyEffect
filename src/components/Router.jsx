@@ -22,7 +22,7 @@ const Router = props => (
         case 'admin':
           return <Admin />;
         default:
-          return <div>Uh oh, you shouldn't be here.</div>;
+          return <div>{'Uh oh, you shouldn\'t be here.'}</div>;
       }
     })()}
   </div>
