@@ -13,7 +13,7 @@ const stations = ['Nishi-Funabashi', 'Yoyogi-Uehara', 'Naka-Meguro', 'Wako-shi',
 (async () => {
   try {
     const fetchLocation = station =>
-      fetch(`http://maps.googleapis.com/maps/api/geocode/json?address="${station}"`)
+      fetch(`http://maps.googleapis.com/maps/api/geocode/json?address="${station}" + station tokyo japan`)
         .then(res => res.json())
         .then(res => res)
         .catch(err => console.error('Error getting address', err));
