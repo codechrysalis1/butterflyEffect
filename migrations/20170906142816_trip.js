@@ -1,11 +1,12 @@
-
-exports.up = function (knex) {
-  return knex.schema.createTable('trip', (t) => {
+const setup = knex =>
+  knex.schema.createTable('trip', (t) => {
     t.increments().index();
     t.integer('tracknum');
     t.enu('status', ['valid', 'invalid']);
   });
-};
-exports.down = function (knex) {
-  return knex.schema.dropTable('trip');
-};
+
+const rollback = knex =>
+  knex.schema.dropTable('trip');
+
+exports.up = setup;
+exports.down = rollback;

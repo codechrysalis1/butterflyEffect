@@ -1,5 +1,5 @@
-exports.up = function (knex) {
-  return knex.schema.createTable('telemetry', (t) => {
+const setup = knex =>
+  knex.schema.createTable('telemetry', (t) => {
     t.decimal('latitude', 12, 8);
     t.decimal('longitude', 12, 8);
     t.integer('charge');
@@ -7,7 +7,9 @@ exports.up = function (knex) {
     t.foreign('drone_id').references('drone.id');
     t.enu('status', ['ready', 'incharge', 'flying', 'out-of-service']);
   });
-};
-exports.down = function (knex) {
-  return knex.schema.dropTable('telemetry');
-};
+
+const rollback = knex =>
+  knex.schema.dropTable('telemetry');
+
+exports.up = setup;
+exports.down = rollback;

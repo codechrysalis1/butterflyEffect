@@ -1,6 +1,5 @@
-
-exports.up = function (knex) {
-  return knex.schema.createTable('segment', (t) => {
+const setup = knex =>
+  knex.schema.createTable('segment', (t) => {
     t.increments().index();
     t.integer('trip_id').unsigned();
     t.foreign('trip_id').references('trip.id');
@@ -11,7 +10,9 @@ exports.up = function (knex) {
     t.integer('des_id').unsigned();
     t.foreign('des_id').references('place.id');
   });
-};
-exports.down = function (knex) {
-  return knex.schema.dropTable('segment');
-};
+
+const rollback = knex =>
+  knex.schema.dropTable('segment');
+
+exports.up = setup;
+exports.down = rollback;

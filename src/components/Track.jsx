@@ -1,44 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withGoogleMap, GoogleMap } from "react-google-maps";
+import { withGoogleMap, GoogleMap } from 'react-google-maps';
 
 import './styles/track.css';
 
-const TrackMap = withGoogleMap(props => {
-  return (
-    <GoogleMap 
-      defaultZoom={10}
-      center={ props.mapCenter }
+const Track = props => (
+  <div id="map" >
+    <TrackMap
+      containerElement={<div style={{ height: '100%', width: '100%' }} />}
+      mapElement={<div style={{ height: '100%' }} />}
+      mapCenter={props.mapCenter}
     />
-  );
+  </div>
+);
+
+const TrackMap = withGoogleMap(props => (
+  <GoogleMap
+    defaultZoom={10}
+    center={props.mapCenter}
+  />
+));
+
+const mapStateToProps = state => ({
+  mapCenter: state.mapCenter,
 });
 
-class Track extends Component {
-  render() {
-    return (
-      <div id="map" >
-        <TrackMap
-          containerElement={ <div style={{ height: `100%`,width:'100%' }} /> }
-          mapElement={ <div style={{ height: `100%` }} /> }
-          mapCenter={ this.props.mapCenter }
-        />
-      </div>
-    )
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  setMapCenter: center => dispatch({ type: 'SET_MAP_CENTER', center }),
+});
 
-const mapStateToProps = state => {
-  return {
-    mapCenter: state.mapCenter
-  };
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    setMapCenter: center => {
-      dispatch({ type: 'SET_MAP_CENTER', center });
-    }
-  };
-}
+Track.propTypes = {
+  mapCenter: PropTypes.shape().isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Track);

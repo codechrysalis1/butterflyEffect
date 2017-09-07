@@ -8,7 +8,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Home from './Home';
 import Admin from './Admin';
-import Track from './Track'
+import Track from './Track';
 
 import './styles/index.css';
 
