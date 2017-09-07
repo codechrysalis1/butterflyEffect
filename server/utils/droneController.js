@@ -147,10 +147,21 @@ class DroneController {
       this.path = []
       this.stationsOnPath = []
     }
+    const route = [];
+    for(let i = 0; i < this.path.length; i++) {
+      route.push({
+        name: this.stationsOnPath[i],
+        lat: this.path[i].lat,
+        lng: this.path[i].lng
+      })
+    }
     return {
       distance: this.minDistance,
-      path: this.path, //array : locations of stations on path
-      stationsOnPath: this.stationsOnPath //array : name of stations
+      path: route,
+      // path: this.path, //array : locations of stations on path
+      // stationsOnPath: this.stationsOnPath //array : name of stations
     }
   }
 }
+
+module.exports = DroneController;

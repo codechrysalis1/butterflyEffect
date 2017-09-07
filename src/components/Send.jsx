@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withGoogleMap, GoogleMap } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, Polyline } from 'react-google-maps';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -36,7 +36,7 @@ const Track = props => (
         className="sending-search-button"
         onClick={() => {
           getRoute(document.getElementById('from-address').value, document.getElementById('dest-address').value)
-            .then(route => props.updateRoute(route));
+            .then(response => props.updateRoute(response.path));
         }}
       />
     </div>
@@ -47,22 +47,50 @@ const Track = props => (
         mapElement={<div style={{ height: '100%' }} />}
         mapCenter={props.mapCenter}
         mapStyle={props.mapStyle}
+        route={props.route}
       />
     </div>
   </div>
 );
 
+const station = {
+  path: 'M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33 0 1.38 1.12 2.5 2.5 2.5.36 0 .69-.08 1-.21v7.21c0 .55-.45 1-1 1s-1-.45-1-1V14c0-1.1-.9-2-2-2h-1V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v16h10v-7.5h1.5v5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V9c0-.69-.28-1.32-.73-1.77zM18 10c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zM8 18v-4.5H6L10 6v5h2l-4 7z',
+  anchor: { x: 10, y: 10 },
+  fillColor: '#FFD441',
+  fillOpacity: 1.0,
+}
+
+const source = {
+  path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+  anchor: { x: 12, y: 22 },
+  fillColor: '#569536',
+  fillOpacity: 1.0,
+}
+
+const dest = {
+  path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+  anchor: { x: 12, y: 22 },
+  fillColor: '#DA4535',
+  fillOpacity: 1.0,
+}
+
 const SendMap = withGoogleMap(props => (
   <GoogleMap
-    defaultZoom={11}
+    defaultZoom={12}
     center={props.mapCenter}
     options={{ styles: props.mapStyle }}
-  />
+  >
+    {props.route.map((loc, idx) =>
+      <Marker key={idx} position={{ lat: loc.lat, lng: loc.lng }} icon={loc.name === 'source' ? source : loc.name === 'destination' ? dest : station}/>
+    )}
+    <Polyline path={props.route} strokeColor={'#1FBCD2'} />
+  </GoogleMap>
 ));
 
 const mapStateToProps = state => ({
   mapCenter: state.mapCenter,
   mapStyle: state.mapStyle,
+  route: state.route,
 });
 
 const mapDispatchToProps = dispatch => ({

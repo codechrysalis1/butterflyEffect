@@ -6,6 +6,7 @@ const initialState = {
   selectedDrone: null,
   settingPaneOpen: false,
   showStations: true,
+  route: [],
   mapStyle,
 };
 
@@ -19,6 +20,8 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { settingPaneOpen: !state.settingPaneOpen });
     case 'TOGGLE_STATIONS':
       return Object.assign({}, state, { showStations: !state.showStations });
+    case 'UPDATE_ROUTE':
+      return Object.assign({}, state, { route: action.route })
     default:
       return state;
   }
