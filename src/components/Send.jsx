@@ -58,21 +58,22 @@ const station = {
   anchor: { x: 10, y: 10 },
   fillColor: '#FFD441',
   fillOpacity: 1.0,
-}
+};
 
-const source = {
-  path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
-  anchor: { x: 12, y: 22 },
-  fillColor: '#569536',
-  fillOpacity: 1.0,
-}
-
-const dest = {
-  path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
-  anchor: { x: 12, y: 22 },
-  fillColor: '#DA4535',
-  fillOpacity: 1.0,
-}
+const icons = {
+  source: {
+    path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+    anchor: { x: 12, y: 22 },
+    fillColor: '#569536',
+    fillOpacity: 1.0,
+  },
+  destination: {
+    path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+    anchor: { x: 12, y: 22 },
+    fillColor: '#DA4535',
+    fillOpacity: 1.0,
+  },
+};
 
 const SendMap = withGoogleMap(props => (
   <GoogleMap
@@ -80,9 +81,13 @@ const SendMap = withGoogleMap(props => (
     center={props.mapCenter}
     options={{ styles: props.mapStyle }}
   >
-    {props.route.map((loc, idx) =>
-      <Marker key={idx} position={{ lat: loc.lat, lng: loc.lng }} icon={loc.name === 'source' ? source : loc.name === 'destination' ? dest : station}/>
-    )}
+    {props.route.map(loc => (
+      <Marker
+        key={loc.name}
+        position={{ lat: loc.lat, lng: loc.lng }}
+        icon={loc.name === 'source' || loc.name === 'destination' ? icons[loc.name] : station}
+      />
+    ))}
     <Polyline path={props.route} strokeColor={'#1FBCD2'} />
   </GoogleMap>
 ));
@@ -108,6 +113,7 @@ Track.propTypes = {
   mapCenter: PropTypes.shape().isRequired,
   mapStyle: PropTypes.arrayOf(PropTypes.object).isRequired,
   updateRoute: PropTypes.func.isRequired,
+  route: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Track);

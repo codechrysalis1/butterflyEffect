@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
     case 'TOGGLE_STATIONS':
       return Object.assign({}, state, { showStations: !state.showStations });
     case 'UPDATE_ROUTE':
-      return Object.assign({}, state, { route: action.route })
+      return Object.assign({}, state, { route: action.route });
     default:
       return state;
   }
