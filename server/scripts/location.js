@@ -1,4 +1,5 @@
 /* eslint-disable padded-blocks */
+/* eslint-disable no-console */ // This is server-side code, rule is intended for client, console.error() is required.
 const fs = require('fs');
 const fetch = require('isomorphic-fetch');
 
@@ -14,7 +15,7 @@ const stations = ['Nishi-Funabashi', 'Yoyogi-Uehara', 'Naka-Meguro', 'Wako-shi',
       fetch(`http://maps.googleapis.com/maps/api/geocode/json?address="${station}"`)
         .then(res => res.json())
         .then(res => res)
-        .catch((err) => { throw err; });
+        .catch(err => console.error('Error getting address', err));
 
     const promises = stations.map(station => fetchLocation(station));
     const responses = await Promise.all(promises);
@@ -32,11 +33,11 @@ const stations = ['Nishi-Funabashi', 'Yoyogi-Uehara', 'Naka-Meguro', 'Wako-shi',
     });
 
     fs.writeFile(LOCATION_DATA_PATH + DATA_FILE, JSON.stringify(results), (err) => {
-      if (err) throw err;
-      // console.error('The file has been saved!');
+      if (err) console.error('The file has not been saved!', err);
+      else console.log('The file has been saved!');
     });
 
   } catch (err) {
-    // console.error('Error updating records', err);
+    console.error('Error updating records', err);
   }
 })();
