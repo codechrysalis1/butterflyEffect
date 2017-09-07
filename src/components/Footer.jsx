@@ -6,7 +6,7 @@ import './styles/footer.css';
 const Footer = () => (
   <footer className="restrict-width">
     <Divider className="footer-divider" />
-    <p>Code Chrysalis © 2017</p>
+    <p className="grow">Code Chrysalis © 2017</p>
   </footer>
 );
 

@@ -9,19 +9,19 @@ import RaisedButton from 'material-ui/RaisedButton';
 import './styles/send.css';
 
 const Track = props => (
-  <div id="sending-page" className="flex restrict-width">
+  <div id="sending-page" className="flex restrict-width grow">
     <div id="sending-search-pane" className="flex">
-      <Paper className="sending-address-pane flex" zDepth={1}>
+      <Paper className="sending-address-pane flex grow" zDepth={1}>
         <p>From:</p>
         <TextField
-          className="sending-address-box"
+          className="sending-address-box grow"
           hintText="Send From"
         />
       </Paper>
-      <Paper className="sending-address-pane flex" zDepth={1}>
+      <Paper className="sending-address-pane flex grow" zDepth={1}>
         <p>To:</p>
         <TextField
-          className="sending-address-box"
+          className="sending-address-box grow"
           hintText="Send To"
         />
       </Paper>
@@ -32,7 +32,7 @@ const Track = props => (
       />
     </div>
 
-    <div id="track-map">
+    <div id="track-map" className="grow">
       <SendMap
         containerElement={<div style={{ height: '100%', width: '100%' }} />}
         mapElement={<div style={{ height: '100%' }} />}

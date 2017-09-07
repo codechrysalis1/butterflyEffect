@@ -20,6 +20,8 @@ body {
 
 .column { flex-direction: column; }
 
+.grow { flex-grow: 1; }
+
 .restrict-width {
   width: 800px;
   min-width: 70%;

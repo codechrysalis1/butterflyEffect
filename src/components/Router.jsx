@@ -10,7 +10,7 @@ import Admin from './Admin';
 import './styles/router.css';
 
 const Router = props => (
-  <div id="router" className="flex">
+  <div id="router" className="flex grow">
     {(() => {
       switch (props.selectedPage) {
         case 'home':

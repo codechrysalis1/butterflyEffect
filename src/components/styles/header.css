@@ -6,7 +6,6 @@ header {
 }
 
 #menu {
-  flex-grow: 1;
   align-items: flex-end;
 }
 

@@ -8,7 +8,7 @@ import './styles/header.css';
 
 const Header = props => (
   <header className="restrict-width flex">
-    <div id="menu" className="flex">
+    <div id="menu" className="flex grow">
       <div id="logo-container">
         <img id="logo" src="/logo.png" alt="logo" />
       </div>
@@ -27,7 +27,7 @@ const Header = props => (
         primary={props.selectedPage === 'track'}
         onClick={() => props.changePage(props.selectedPage, 'track')}
       />
-      <div style={{ flexGrow: 1 }} />
+      <div className="grow" />
       <FlatButton
         label="Admin"
         secondary={props.selectedPage === 'admin'}
