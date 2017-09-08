@@ -5,6 +5,7 @@ const initialState = {
   mapCenter: { lat: 35.6895, lng: 139.6917 },
   selectedDrone: null,
   stations: [],
+  stationsLoaded: false,
   settingPaneOpen: false,
   showStations: true,
   route: [],
@@ -23,6 +24,8 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { showStations: !state.showStations });
     case 'UPDATE_ROUTE':
       return Object.assign({}, state, { route: action.route });
+    case 'UPDATE_STATIONS':
+      return Object.assign({}, state, { stations: action.stations, stationsLoaded: true });
     default:
       return state;
   }
