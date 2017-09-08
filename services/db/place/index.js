@@ -12,6 +12,7 @@ const Place = function (dbPlace) {
 module.exports = (knex) => {
   return {
     list: require('./list')(knex, Place),
+    create: require('./create')(knex, Place),
   };
 };
 

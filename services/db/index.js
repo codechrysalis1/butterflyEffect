@@ -12,7 +12,8 @@ module.exports = function (config) {
   });
 
   return {
-    places: require('./place')(knex),
+    place: require('./place')(knex),
     trip: require('./trip')(knex),
+    segment: require('./segment')(knex),
   };
 };
