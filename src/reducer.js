@@ -4,6 +4,7 @@ const initialState = {
   selectedPage: 'home',
   mapCenter: { lat: 35.6895, lng: 139.6917 },
   selectedDrone: null,
+  stations: [],
   settingPaneOpen: false,
   showStations: true,
   route: [],
