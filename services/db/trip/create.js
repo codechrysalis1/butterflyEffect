@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 module.exports = (knex, Trip) => {
   return async (params) => {
     try {
@@ -9,7 +10,7 @@ module.exports = (knex, Trip) => {
         });
 
       const trips = await knex('trip')
-        .where({'id': id[0]})
+        .where({ id: id[0] })
         .select();
       return new Trip(trips[0]);
     } catch (err) {

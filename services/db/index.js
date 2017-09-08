@@ -1,4 +1,5 @@
 /* eslint-disable global-require */
+/* eslint-disable func-names */
 const Knex = require('knex');
 
 module.exports = function (config) {
