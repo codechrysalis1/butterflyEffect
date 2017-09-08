@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+
 module.exports = (knex, Station) => {
   return async () => {
     try {

@@ -1,3 +1,7 @@
+/* eslint-disable func-names */
+/* eslint-disable global-require */
+/* eslint-disable arrow-body-style */
+
 const Station = function (dbStation) {
   this.id = dbStation.id;
   this.latitude = dbStation.latitude;
