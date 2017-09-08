@@ -2,7 +2,7 @@
 /* eslint-disable func-names */
 const Knex = require('knex');
 
-module.exports = function (config) {
+module.exports = (config) => {
   const knex = Knex({
     client: config.client,
     port: config.connection.port,
