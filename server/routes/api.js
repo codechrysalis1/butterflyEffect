@@ -1,15 +1,14 @@
 // This is server-side code, rule is intended for client, console.error() is required.
-/* eslint-disable no-await-in-loop */
 /* eslint-disable no-console */
-
+/* eslint-disable no-await-in-loop */
 const express = require('express');
-const uuidv4 = require('uuid/v4');
 const Dijkstra = require('../utils/droneController');
+const uuidv4 = require('uuid/v4');
 
 const router = express.Router();
 
 module.exports = (services) => {
-  /* GET stations listing. */
+  /* GET stations */
   router.get('/stations', async (req, res) => {
     try {
       const stations = await services.db.place.list();
@@ -18,8 +17,15 @@ module.exports = (services) => {
       throw err;
     }
   });
-
-  router.post('/route', async (req, res) => {
+  /* POST calculate */
+  router.post('/calculate', (req, res) => {
+    const dijkstra = new Dijkstra(req.body.from, req.body.dest, { MAX_DISTANCE: 4 });
+    const result = dijkstra.solve();
+    console.log(result);
+    res.json(result);
+  });
+  /* POST routes */
+  router.post('/routes', async (req, res) => {
     try {
       const routes = req.body;
       const tracknum = uuidv4();
@@ -27,25 +33,27 @@ module.exports = (services) => {
       const trip = {};
       trip.tracknum = tracknum;
       trip.status = 'inprogress';
-      // db trip
+      // store trip
       const tripResult = await services.db.trip.create(trip);
       const tripid = tripResult.id;
 
-      for (let i = 0; i < routes.length - 1; i += 1) {
-        const segment = {};
-        segment.source_id = routes[i].id;
-        segment.des_id = routes[i + 1].id;
-        segment.trip_id = tripid;
-        segment.drone_id = null;
-        // db segment
-        await services.db.segment.create(segment);
+      for (let i = 0, len = routes.length; i < len; i += 1) {
+        if (i !== len - 1) {
+          const segment = {};
+          segment.source_id = routes[i].id;
+          segment.des_id = routes[i + 1].id;
+          segment.trip_id = tripid;
+          segment.drone_id = null;
+          // store segments
+          await services.db.segment.create(segment);
+        }
 
         if (routes[i].name === 'source' || routes[i].name === 'destination') {
           const route = {};
           route.type = routes[i].name;
           route.latitude = routes[i].lat;
           route.longitude = routes[i].lng;
-          // db place
+          // store places
           await services.db.place.create(route);
         }
       }
@@ -56,12 +64,6 @@ module.exports = (services) => {
     }
   });
 
-  router.post('/calculate', (req, res) => {
-    const dijkstra = new Dijkstra(req.body.from, req.body.dest, { MAX_DISTANCE: 4 });
-    const result = dijkstra.solve();
-    console.log(result);
-    res.json(result);
-  });
 
   return router;
 };
