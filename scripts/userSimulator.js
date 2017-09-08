@@ -28,7 +28,7 @@ const getRoute = async (from, dest) => {
       },
       credentials: 'same-origin',
     })).json();
-    console.log(response)
+    console.log(response);
     return response;
   } catch (err) {
     return { status: 'error', message: 'Error occured while fetching from API.' };
