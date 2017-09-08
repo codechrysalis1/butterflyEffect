@@ -33,8 +33,8 @@
     "test:unit": "react-scripts test --env=jsdom",
     "test": "npm run test:eslint && npm run test:stylelint && npm run test:unit",
     "eject": "react-scripts eject",
-    "migrate": "knex migrate:latest ",
-    "rollback": "knex migrate:rollback "
+    "migrate": "knex migrate:latest --knexfile services/db/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile services/db/knexfile.js"
   },
   "proxy": "http://localhost:3001",
   "devDependencies": {
