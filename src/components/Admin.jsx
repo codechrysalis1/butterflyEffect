@@ -25,6 +25,7 @@ const stationIcon = {
 
 const Admin = (props) => {
   if (!props.stationsLoaded) {
+    console.log(props.showStations)
     getStations().then(stations => props.updateStations(stations));
   }
 
@@ -35,6 +36,7 @@ const Admin = (props) => {
       mapCenter={props.mapCenter}
       mapStyle={props.mapStyle}
       stations={props.stations}
+      showStations={props.showStations}
     />
     <Paper className="details-pane">
       {
