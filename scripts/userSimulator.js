@@ -20,7 +20,7 @@ const getRoute = async (from, dest) => {
     const params = {
       from,
       dest };
-    const response = await (await fetch('/api/calculate', {
+    const response = await (await fetch('http://127.0.0.1:3001/api/calculate', {
       method: 'POST',
       body: JSON.stringify(params),
       headers: {
@@ -35,7 +35,7 @@ const getRoute = async (from, dest) => {
   }
 };
 
-const time = 5000; // time in ms
+const time = 1000; // time in ms
 setInterval(function() {
   // tokyo location : {lat: 35.664390, lng:139.769869}
   let source = randomLocation(35.652832, 139.839478);
