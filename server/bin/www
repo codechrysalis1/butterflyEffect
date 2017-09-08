@@ -1,13 +1,6 @@
 #!/usr/bin/env node
 
 /**
- * Run database migrations
- */
-// TODO add 'run database migrations'
-// console.log('Running migrations...');
-// db.migrate.latest();
-
-/**
  * Module dependencies.
  */
 
