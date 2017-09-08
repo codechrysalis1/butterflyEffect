@@ -25,7 +25,6 @@ const stationIcon = {
 
 const Admin = (props) => {
   if (!props.stationsLoaded) {
-    console.log(props.showStations)
     getStations().then(stations => props.updateStations(stations));
   }
 
