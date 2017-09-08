@@ -12,6 +12,7 @@ module.exports = function (config) {
   });
 
   return {
-    stations: require('./stations')(knex),
+    places: require('./place')(knex),
+    trip: require('./trip')(knex),
   };
 };
