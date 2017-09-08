@@ -11,6 +11,6 @@ module.exports = function (config) {
   });
 
   return {
-    stickers: require('./stations')(knex),
+    stations: require('./stations')(knex),
   };
 };

@@ -22,7 +22,6 @@ const db = knex({
       });
     });
 
-    // TODO modify location.json to have only lat & lng
     const stations = JSON.parse(result);
 
     const insert = item =>
