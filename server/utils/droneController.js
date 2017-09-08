@@ -5,11 +5,16 @@ const rawData = [{ id: 'ChIJBUEZMJWAGGARFLVMi2Wfw-U', name: 'Nishi-Funabashi', l
 class DroneController {
   constructor(source, destination, options) {
     this.stations = {};
-    for(let station of rawData){
+    // for (const station of rawData) {
+    //   this.stations[station.name] = {};
+    //   this.stations[station.name].lat = station.lat;
+    //   this.stations[station.name].lng = station.lng;
+    // }
+    rawData.keys().forEach((station) => {
       this.stations[station.name] = {};
       this.stations[station.name].lat = station.lat;
       this.stations[station.name].lng = station.lng;
-    }
+    });
     this.source = source;
     this.destination = destination;
     this.options = options;
@@ -25,61 +30,58 @@ class DroneController {
     let stationName;
     let stationLocation;
     let first = true;
-    for (let station in this.stations) {
-      let distance = this.distance(point, {
+    this.stations.keys().forEach((station) => {
+      const distance = this.distance(point, {
         lat: this.stations[station].lat,
-        lng: this.stations[station].lng
-      });
-      if (station ==='source' || station === 'destination') {
-        continue;
+        lng: this.stations[station].lng });
+      if (station !== 'source' && station !== 'destination') {
+        if (first) {
+          minDistance = distance;
+          stationLocation = station;
+          first = false;
+        }
+        if (distance < minDistance) {
+          minDistance = distance;
+          stationName = station;
+          stationLocation = this.stations[station];
+        }
       }
-      if (first){
-        minDistance = distance;
-        stationLocation = station;
-        first = false;
-      }
-      if (distance < minDistance){
-        minDistance = distance;
-        stationName = station;
-        stationLocation= this.stations[station];
-      }
-    }
+    });
     return {
       minDistance,
       stationName,
-      stationLocation
-    };
+      stationLocation };
   }
 
-  distance(a, b) {
+  static distance(a, b) {
     function deg2rad(deg) {
-      return deg * (Math.PI/180);
+      return deg * (Math.PI / 180);
     }
-    const R = 6371;                // Radius of the earth in km
+    const R = 6371; // Radius of the earth in km
     const dLat = deg2rad(a.lat - b.lat);
     const dLng = deg2rad(a.lng - b.lng);
-    let A =  Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(a.lat)) * Math.cos(deg2rad(b.lat)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
-    let C = 2 * Math.atan2(Math.sqrt(A), Math.sqrt(1 - A));
-    let D = R * C;                 // Distance in km
+    const A1 = Math.sin(dLat / 2) * Math.sin(dLat / 2);
+    let A2 = Math.cos(deg2rad(a.lat)) * Math.cos(deg2rad(b.lat));
+    A2 = Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const A = A1 + A2;
+    const C = 2 * Math.atan2(Math.sqrt(A), Math.sqrt(1 - A));
+    const D = R * C;// Distance in km
     return D;
-    
   }
-  
   constructGraph() {
     this.graph = {};
-    for (let point in this.stations) {
-      for (let adj in this.stations) {
-        if (point === adj) {
-          continue;
+    this.stations.keys().forEach((point) => {
+      this.stations.keys().forEach((adj) => {
+        if (point !== adj) {
+          if (this.distance(this.stations[point],
+            this.stations[adj]) <= this.options.MAX_DISTANCE) {
+            this.graph[point] = this.graph[point] || {};
+            this.graph[point][adj] = this.distance(this.stations[point], this.stations[adj]);
+          }
         }
-        if (this.distance(this.stations[point], this.stations[adj]) <= this.options.MAX_DISTANCE ) {
-          this.graph[point] = this.graph[point] || {};
-          this.graph[point][adj] = this.distance(this.stations[point], this.stations[adj]);
-        }
-      }
-    }
+      });
+    });
   }
-  
   calculatePath(parrents) {
     this.path = [];
     this.stationsOnPath = [];
@@ -96,32 +98,36 @@ class DroneController {
   }
 
   dijkstra() {
-    if (this.nearestStation > this.options.MAX_DISTANCE / 2) {
-      return this.minDistance = undefined;
+    if (this.firstStation > this.options.MAX_DISTANCE / 2) {
+      this.minDistance = undefined;
+      return this.minDistance;
     }
-    let unvisited = Object.keys(this.graph);
-    let dis = {};
+    const unvisited = Object.keys(this.graph);
+    const dis = {};
     let current = 'source';
-    let pathParrent = {};
+    const pathParrent = {};
     let maxStep = unvisited.length + 1;
     dis[current] = 0;
-    while (maxStep--) {
-      for (const adj in this.graph[current]) {
+    while (maxStep) {
+      maxStep -= 1;
+      this.graph[current].keys().forEach((adj) => { // eslint-disable-line no-loop-func
         if (dis[adj] === undefined ||
           dis[adj] > dis[current] + this.distance(this.stations[current], this.stations[adj])) {
           dis[adj] = dis[current] + this.distance(this.stations[current], this.stations[adj]);
           pathParrent[adj] = current;
         }
-      }
+      });
+
       unvisited.splice(unvisited.indexOf(current), 1);
       if (current === 'destination') {
         console.log('reached destination');
         break;
       }
       current = null;
-      for (const candidate of unvisited) {
-        if (dis[candidate] !== undefined && (current === null || dis[current] > dis[candidate])) {
-          current = candidate;
+      for (let i = 0; i < unvisited.length; i += 1) {
+        if (dis[unvisited[i]] !== undefined &&
+        (current === null || dis[current] > dis[unvisited[i]])) {
+          current = dis[unvisited[i]];
         }
       }
     }
@@ -134,7 +140,6 @@ class DroneController {
   solve() {
     this.constructGraph();
     this.dijkstra();
-    console.log('dijkstra ended');
     if (this.path !== []) {
       this.path.unshift(this.source);
       this.stationsOnPath.unshift('source');
@@ -161,10 +166,7 @@ class DroneController {
     }
     return {
       distance: this.minDistance,
-      path: route,
-      // path: this.path, //array : locations of stations on path
-      // stationsOnPath: this.stationsOnPath //array : name of stations
-    };
+      path: route };
   }
 }
 
