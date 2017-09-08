@@ -21,22 +21,20 @@ const stationIcon = {
   anchor: { x: 10, y: 10 },
   fillColor: '#FFD441',
   fillOpacity: 1.0,
-}
+};
 
-const Admin = props => {
-  if(!props.stationsLoaded) {
-    getStations().then(stations => {
-      console.log(stations);
-      props.updateStations(stations);
-    });
+const Admin = (props) => {
+  if (!props.stationsLoaded) {
+    getStations().then(stations => props.updateStations(stations));
   }
 
-  return <div id="dashboard" className="grow">
+  return (<div id="dashboard" className="grow">
     <AdminMap
       containerElement={<div style={{ height: '100%' }} />}
       mapElement={<div style={{ height: '100%' }} />}
       mapCenter={props.mapCenter}
       mapStyle={props.mapStyle}
+      stations={props.stations}
     />
     <Paper className="details-pane">
       {
@@ -69,7 +67,7 @@ const Admin = props => {
         />
       </Paper>
     </Drawer>
-  </div>
+  </div>);
 };
 
 const AdminMap = withGoogleMap(props => (
@@ -79,12 +77,12 @@ const AdminMap = withGoogleMap(props => (
     options={{ styles: props.mapStyle }}
   >
     { props.showStations ?
-      props.stations.map(station =>
+      props.stations.map(station => (
         <Marker
           key={station.id}
           position={{ lat: station.lat, lng: station.lng }}
           icon={stationIcon}
-        />) :
+        />)) :
       <div /> }
   </GoogleMap>
 ));
@@ -112,7 +110,7 @@ const mapDispatchToProps = dispatch => ({
   }),
   updateStations: stations => dispatch({
     type: 'UPDATE_STATIONS',
-    stations
+    stations,
   }),
 });
 
@@ -125,6 +123,8 @@ Admin.propTypes = {
   toggleSettingPane: PropTypes.func.isRequired,
   showStations: PropTypes.bool.isRequired,
   toggleStations: PropTypes.func.isRequired,
+  stationsLoaded: PropTypes.bool.isRequired,
+  updateStations: PropTypes.func.isRequired,
 };
 
 Admin.defaultProps = {
