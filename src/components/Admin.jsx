@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, Circle } from 'react-google-maps';
 
 import Paper from 'material-ui/Paper';
 import Icon from 'material-ui/SvgIcon';
@@ -84,6 +84,19 @@ const AdminMap = withGoogleMap(props => (
           key={station.id}
           position={{ lat: station.lat, lng: station.lng }}
           icon={stationIcon}
+        />)) :
+      <div /> }
+      { props.showStations ?
+      props.stations.map(station => (
+        <Circle
+          key={station.id}
+          center={{ lat: station.lat, lng: station.lng }}
+          radius={1000}
+          options={{
+            strokeColor: `grey`,
+            fillColor: `grey`,
+            strokeWeight: 1,
+          }}
         />)) :
       <div /> }
   </GoogleMap>
