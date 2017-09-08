@@ -74,7 +74,7 @@ const Admin = (props) => {
 
 const AdminMap = withGoogleMap(props => (
   <GoogleMap
-    defaultZoom={11}
+    defaultZoom={12}
     center={props.mapCenter}
     options={{ styles: props.mapStyle }}
   >
