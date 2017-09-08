@@ -90,7 +90,7 @@ const AdminMap = withGoogleMap(props => (
         <Circle
           key={station.id}
           center={{ lat: station.lat, lng: station.lng }}
-          radius={1000}
+          radius={4000}
           options={{
             strokeColor: `grey`,
             fillColor: `grey`,
