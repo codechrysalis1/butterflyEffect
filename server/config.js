@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   // database connection configs
   db: {
     client: 'pg',
@@ -15,3 +15,5 @@ module.exports = {
     format: 'dddd MMMM Do YYYY, h:mm:ss a',
   },
 };
+console.log('config config=', config);
+module.exports = config;

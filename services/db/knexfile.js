@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   client: 'pg',
   connection: process.env.DATABASE_URL || 'postgres://127.0.0.1:5432/air_delivery',
   pool: {
@@ -9,3 +9,5 @@ module.exports = {
     tableName: 'knex_migrations',
   },
 };
+console.log('knexfile config=', config);
+module.exports = config;
