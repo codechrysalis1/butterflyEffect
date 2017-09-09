@@ -1,3 +1,6 @@
+/* eslint-disable func-names */
+/* eslint-disable global-require */
+/* eslint-disable arrow-body-style */
 const Telemetry = function (dbTelemetry) {
   this.latitude = dbTelemetry.latitude;
   this.longitude = dbTelemetry.longitude;

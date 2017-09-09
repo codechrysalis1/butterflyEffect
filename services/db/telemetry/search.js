@@ -1,8 +1,9 @@
+/* eslint-disable arrow-body-style */
 module.exports = (knex, Telemetry) => {
-  return async (drone_id) => {
+  return async (droneId) => {
     try {
       const telemetrys = await knex('telemetry')
-        .where({ drone_id })
+        .where({ drone_id: droneId })
         .select();
       return new Telemetry(telemetrys[0]);
     } catch (err) {

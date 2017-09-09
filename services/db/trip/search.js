@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 module.exports = (knex, Trip) => {
   return async (tracknum) => {
     try {

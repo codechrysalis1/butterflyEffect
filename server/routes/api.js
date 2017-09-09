@@ -50,7 +50,7 @@ module.exports = (services) => {
             source_id: routes[i].id,
             des_id: routes[i + 1].id,
             trip_id: tripid,
-            drone_id: i+1,
+            drone_id: i + 1,
           };
           if (i === 0) {
             segment.status = 'inprogress';
@@ -84,25 +84,25 @@ module.exports = (services) => {
 
   router.post('/tracknum', async (req, res) => {
     try {
-      let tracknum = req.body.id;
+      const tracknum = req.body.id;
       const trip = await services.db.trip.search(tracknum);
       const tripid = trip.id;
       const segments = await services.db.segment.search(tripid);
 
       let telemetry = {};
-      for (let i = 0; i < segments.length; i++) {
+      for (let i = 0; i < segments.length; i += 1) {
         if (segments[i].status === 'inprogress') {
-          const drone_id = segments[i].drone_id;
-          telemetry = await services.db.telemetry.search(drone_id);
+          const droneId = segments[i].drone_id;
+          telemetry = await services.db.telemetry.search(droneId);
         }
       }
       const ret = {
         route: segments,
-        telemetry
-      }
+        telemetry,
+      };
       res.status(200).send(ret);
     } catch (err) {
-      console.log("Error", err)
+      console.log('Error', err);
       throw err;
     }
   });
