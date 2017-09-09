@@ -16,9 +16,7 @@ const getLngLat = async (address) => {
 const getRoute = async (from, dest) => {
   try {
     const cords = await Promise.all([getLngLat(from), getLngLat(dest)]);
-    console.log('cords[0] ', cords[0])
     if (cords[0].status === 'error' || cords[1].status === 'error') {
-      console.log('reached here')
       return { status: 'error', message: 'Could not find location.', path: [] };
     }
     const params = {

@@ -136,7 +136,14 @@ class DroneController {
     this.constructGraph();
     this.dijkstra();
     console.log('dijkstra ended');
+    if(this.path === undefined && this.minDistance === undefined){
+      return {
+        distance: this.minDistance,
+        path: []
+      };
+    }
     if (this.path !== []) {
+      this.path = [];
       this.path.unshift(this.source);
       this.stationsOnPath.unshift('source');
     }
@@ -162,9 +169,7 @@ class DroneController {
     }
     return {
       distance: this.minDistance,
-      path: route,
-      // path: this.path, //array : locations of stations on path
-      // stationsOnPath: this.stationsOnPath //array : name of stations
+      path: route
     };
   }
 }
