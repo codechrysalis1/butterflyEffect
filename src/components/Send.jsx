@@ -36,20 +36,17 @@ const Track = props => (
         className="sending-search-button"
         onClick={() => {
           getRoute(document.getElementById('from-address').value, document.getElementById('dest-address').value)
-            .then(response => {
-                props.updateRoute(response.path);
-                if (response.message === 'Could not find location.') {
-                  alert('Could not find location.');
-                }
-                else if (response.message === 'Error occured while fetching from API.'){
-                  alert('Error occured while fetching from API.');
-                } else {
-                  alert('request in not supported area.');
-                }
+            .then((response) => {
+              props.updateRoute(response.path);
+              if (response.message === 'Could not find location.') {
+                alert('Could not find location.');
+              } else if (response.message === 'Error occured while fetching from API.') {
+                alert('Error occured while fetching from API.');
+              } else {
+                alert('request in not supported area.');
               }
-            );
-          }
-        }
+            });
+        }}
       />
     </div>
 
