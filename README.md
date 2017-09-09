@@ -11,6 +11,8 @@ INSERT TECHNOLOGIES USED
 - [AirMap API](developer.airmap.io)
 - Postgres
 
+- Station data is collected by scraping [Wikipedia](https://en.wikipedia.org/wiki/List_of_railway_stations_in_Japan:_A) for a list of station names in Japan and then getting their latitude and longitude from the Google geocoding API.
+
 ## Environment & Set Up
 
 INSERT MORE SET UP
