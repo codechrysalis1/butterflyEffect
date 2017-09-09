@@ -21,6 +21,12 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 
+# vim
+*.sw*
+
+# vscode
+.vscode
+
 # IntelliJ
 *.ipr
 *.iml
