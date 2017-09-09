@@ -4,11 +4,20 @@
 const fs = require('fs');
 const knex = require('knex');
 
+console.log('populateLocation process.env.DATABASE_URL');
+console.log(process.env.DATABASE_URL);
+
+console.log('populateLocation CONFIG FILE:');
+console.log(config);
+
 const db = knex({
   client: 'pg',
-  connection: process.env.DATABASE_URL || `postgres://${process.env.USER}@127.0.0.1:5432/air_delivery`,
+  connection: process.env.DATABASE_URL,
   searchPath: 'public',
 });
+
+console.log('populateLocation db.connection:');
+console.log(db);
 
 (async () => {
   try {
