@@ -20,7 +20,7 @@
     "react-google-maps": "^7.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.0.12",
+    "react-scripts": "0.9.5",
     "redux": "^3.7.2"
   },
   "scripts": {
@@ -31,7 +31,7 @@
     "test:eslint": "eslint --ext=js --ext=jsx .",
     "test:stylelint": "stylelint \"**/*.css\"",
     "test:unit": "react-scripts test --env=jsdom",
-    "test": "npm run test:eslint && npm run test:stylelint && npm run test:unit",
+    "test": "yarn test:eslint && yarn test:stylelint && yarn test:unit",
     "eject": "react-scripts eject",
     "migrate": "knex migrate:latest --knexfile services/db/knexfile.js",
     "rollback": "knex migrate:rollback --knexfile services/db/knexfile.js"
