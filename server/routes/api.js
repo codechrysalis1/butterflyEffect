@@ -35,31 +35,33 @@ module.exports = (services) => {
   router.post('/routes', async (req, res) => {
     try {
       const routes = req.body;
-      const tracknum = uuidv4();
+      const trip = {
+        tracknum: uuidv4(),
+        status: 'inprogress',
+      };
 
-      const trip = {};
-      trip.tracknum = tracknum;
-      trip.status = 'inprogress';
       // store trip
       const tripResult = await services.db.trip.create(trip);
       const tripid = tripResult.id;
 
       for (let i = 0, len = routes.length; i < len; i += 1) {
         if (i !== len - 1) {
-          const segment = {};
-          segment.source_id = routes[i].id;
-          segment.des_id = routes[i + 1].id;
-          segment.trip_id = tripid;
-          segment.drone_id = null;
+          const segment = {
+            source_id: routes[i].id,
+            des_id: routes[i + 1].id,
+            trip_id: tripid,
+            drone_id: null,
+          };
           // store segments
           await services.db.segment.create(segment);
         }
 
         if (routes[i].name === 'source' || routes[i].name === 'destination') {
-          const route = {};
-          route.type = routes[i].name;
-          route.latitude = routes[i].lat;
-          route.longitude = routes[i].lng;
+          const route = {
+            type: routes[i].name,
+            latitude: routes[i].lat,
+            longitude: routes[i].lng,
+          };
           // store places
           await services.db.place.create(route);
         }
