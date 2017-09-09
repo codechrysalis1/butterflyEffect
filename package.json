@@ -27,7 +27,6 @@
   "scripts": {
     "precommit": "lint-staged",
     "server": "nodemon ./server/bin/www",
-    "servermanual": "node ./server/bin/www",
     "client": "react-scripts start",
     "build": "react-scripts build",
     "test:eslint": "eslint --ext=js --ext=jsx .",

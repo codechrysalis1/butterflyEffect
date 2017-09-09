@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 module.exports = (knex, Segment) => {
   return async (params) => {
     try {
@@ -12,7 +13,7 @@ module.exports = (knex, Segment) => {
         });
 
       const places = await knex('segment')
-        .where({'id': id[0]})
+        .where({ id: id[0] })
         .select();
       return new Segment(places[0]);
     } catch (err) {
