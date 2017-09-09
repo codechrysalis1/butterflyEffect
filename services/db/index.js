@@ -2,14 +2,9 @@
 const Knex = require('knex');
 
 module.exports = (config) => {
-  const knex = Knex({
-    client: config.client,
-    port: config.connection.port,
-    connection: {
-      host: config.connection.host,
-      database: config.connection.database,
-    },
-  });
+  console.log('INDEX CONFIG')
+  console.log(config);
+  const knex = Knex(config);
 
   return {
     stations: require('./stations')(knex),
