@@ -37,8 +37,17 @@ const Track = props => (
         onClick={() => {
           getRoute(document.getElementById('from-address').value, document.getElementById('dest-address').value)
             .then(response => {
+                console.log(response);
                 if (response.status === 'ok') {
                   props.updateRoute(response.path);
+                }
+                else if (response.message === 'Could not find location.') {
+                  props.updateRoute(response.path);
+                  alert('Could not find location.');
+                }
+                else if (response.message === 'Error occured while fetching from API.'){
+                  props.updateRoute(response.path);
+                  alert('Error occured while fetching from API.');
                 }
               }
             );
