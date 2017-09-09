@@ -34,7 +34,10 @@ const db = knex({
       item.latitude = station.lat;
       item.longitude = station.lng;
       item.type = 'station';
-      return insert(item);
+      if (item.longitude !== 0 && item.latitude !== 0) {
+        return insert(item);
+      }
+      return null;
     });
 
     await Promise.all(promises);
@@ -42,5 +45,6 @@ const db = knex({
   } catch (err) {
     console.error('Error updating records', err);
   }
+  console.log('All done!');
   process.exit();
 })();

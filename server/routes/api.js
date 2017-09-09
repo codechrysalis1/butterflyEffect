@@ -13,7 +13,7 @@ module.exports = (services) => {
   /* GET stations */
   router.get('/stations', async (req, res) => {
     try {
-      const stations = (await services.db.stations.list()).map((station) => {
+      const stations = (await services.db.place.list()).map((station) => {
         return {
           id: station.id,
           lat: parseFloat(station.latitude),
