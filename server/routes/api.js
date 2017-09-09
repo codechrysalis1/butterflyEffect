@@ -21,7 +21,7 @@ module.exports = (services) => {
       console.log(stations);
       res.status(200).json(stations);
     } catch (err) {
-      throw err;
+      res.status(400).send('Bad Request');
     }
   });
   /* POST calculate */
@@ -34,7 +34,7 @@ module.exports = (services) => {
   /* POST routes */
   router.post('/routes', async (req, res) => {
     try {
-      const routes = req.body;
+      const routes = req.body.routes;
       const trip = {
         tracknum: uuidv4(),
         status: 'inprogress',
@@ -66,10 +66,13 @@ module.exports = (services) => {
           await services.db.place.create(route);
         }
       }
-
-      res.status(200).send('Successful!');
+      const ret = {
+        stat: 'Successful!',
+        tracknum: trip.tracknum,
+      };
+      res.status(200).send(ret);
     } catch (err) {
-      throw err;
+      res.status(400).send('Bad Request');
     }
   });
 
