@@ -11,7 +11,7 @@ const PORTION = 9;
 const stations = JSON.parse(fs.readFileSync('../data/station-en.json')).slice(PORTION * 1000, (PORTION + 1) * 1000);
 
 // Using timeout (fast and does not exceed rate-limit)
-const func = async (station) => {
+const scrape = async (station) => {
   try {
     const res = await (await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${station.replace(' ', '+')}+Japan&key=${APIKEY}`)).json();
     if (res.error_message) {
@@ -38,5 +38,5 @@ const func = async (station) => {
 };
 
 stations.map(station =>
-  setTimeout(() => func(station), 50 * count++),
+  setTimeout(() => scrape(station), 50 * count++),
 );
