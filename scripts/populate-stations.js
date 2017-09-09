@@ -13,7 +13,7 @@ const db = knex({
 (async () => {
   try {
     const result = await new Promise((resolve, reject) => {
-      fs.readFile('../data/location.json', 'utf-8', (err, data) => {
+      fs.readFile('../data/station-cords.json', 'utf-8', (err, data) => {
         if (err) {
           reject(err);
         } else {
