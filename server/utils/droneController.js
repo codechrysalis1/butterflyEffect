@@ -142,19 +142,17 @@ class DroneController {
         path: []
       };
     }
-    if (this.path !== []) {
-      this.path = [];
-      this.path.unshift(this.source);
-      this.stationsOnPath.unshift('source');
-    }
+    this.path.unshift(this.source);
+    this.stationsOnPath.unshift('source');
     this.path.unshift(this.firstStation.stationLocation);
     this.stationsOnPath.unshift(this.firstStation.stationName);
     this.finalStation = this.findNearestStation(this.destination);
     if (this.finalStation.minDistance > this.options.MAX_DISTANCE / 2) {
       this.minDistance = undefined;
+    } else {
+      this.path.push(this.finalStation.stationLocation);
+      this.stationsOnPath.push(this.finalStation.stationName);
     }
-    this.path.push(this.finalStation.stationLocation);
-    this.stationsOnPath.push(this.finalStation.stationName);
     if (this.minDistance === undefined) {
       this.path = [];
       this.stationsOnPath = [];
