@@ -36,8 +36,14 @@ const Track = props => (
         className="sending-search-button"
         onClick={() => {
           getRoute(document.getElementById('from-address').value, document.getElementById('dest-address').value)
-            .then(response => props.updateRoute(response.path));
-        }}
+            .then(response => {
+                if (response.status === 'ok') {
+                  props.updateRoute(response.path);
+                }
+              }
+            );
+          }
+        }
       />
     </div>
 
