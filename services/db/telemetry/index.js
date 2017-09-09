@@ -1,5 +1,4 @@
 const Telemetry = function (dbTelemetry) {
-  this.id = dbTelemetry.id;
   this.latitude = dbTelemetry.latitude;
   this.longitude = dbTelemetry.longitude;
   this.charge = dbTelemetry.charge;
@@ -9,6 +8,6 @@ const Telemetry = function (dbTelemetry) {
 
 module.exports = (knex) => {
   return {
-    search: require('./search')(knex,Telemetry),
+    search: require('./search')(knex, Telemetry),
   };
 };

@@ -50,7 +50,7 @@ module.exports = (services) => {
             source_id: routes[i].id,
             des_id: routes[i + 1].id,
             trip_id: tripid,
-            drone_id: i + 1,
+            drone_id: i+1,
           };
           if (i === 0) {
             segment.status = 'inprogress';
@@ -77,6 +77,7 @@ module.exports = (services) => {
       };
       res.status(200).send(ret);
     } catch (err) {
+      console.error('fail', err);
       res.status(400).send('Bad Request');
     }
   });
@@ -88,18 +89,20 @@ module.exports = (services) => {
       const tripid = trip.id;
       const segments = await services.db.segment.search(tripid);
 
+      let telemetry = {};
       for (let i = 0; i < segments.length; i++) {
         if (segments[i].status === 'inprogress') {
           const drone_id = segments[i].drone_id;
-          console.log(segments[i], 'segments[i]');
-          console.log('segments[i].drone_id', segments[i].drone_id);
-          //   const telemetryone = await services.db.telemetry.search(drone_id);
-          //   console.log("telemetry", telemetryone)
+          telemetry = await services.db.telemetry.search(drone_id);
         }
       }
-
-      res.status(200).send('sending');
+      const ret = {
+        route: segments,
+        telemetry
+      }
+      res.status(200).send(ret);
     } catch (err) {
+      console.log("Error", err)
       throw err;
     }
   });

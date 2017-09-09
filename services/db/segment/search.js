@@ -8,11 +8,7 @@ module.exports = (knex, Segment) => {
       segments.forEach((segment) => {
        segmentsList.push(new Segment(segment));
       });
-
-    
-
       return segmentsList;
-
     } catch (err) {
       throw err;
     }
