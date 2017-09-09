@@ -1,5 +1,6 @@
 // This is server-side code, rule is intended for client, console.error() is required.
 /* eslint-disable no-console */
+/* eslint-disable arrow-body-style */
 
 const express = require('express');
 const Dijkstra = require('../utils/droneController');
@@ -10,13 +11,13 @@ module.exports = (services) => {
   /* GET stations listing. */
   router.get('/stations', async (req, res) => {
     try {
-      const stations = (await services.db.stations.list()).map(station =>
-        Object.assign({
+      const stations = (await services.db.stations.list()).map((station) => {
+        return {
           id: station.id,
           lat: parseFloat(station.latitude),
           lng: parseFloat(station.longitude),
-        }),
-      );
+        };
+      });
       console.log(stations);
       res.status(200).json(stations);
     } catch (err) {
