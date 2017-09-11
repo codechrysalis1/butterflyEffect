@@ -30,3 +30,6 @@ yarn-error.log*
 *.iml
 *.iws
 .idea/
+
+# NO_ENV
+.env
