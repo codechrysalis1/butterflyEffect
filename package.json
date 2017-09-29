@@ -38,8 +38,9 @@
     "test:server": "mocha --recursive server/test/",
     "test": "yarn test:eslint && yarn test:stylelint && yarn test:server && yarn test:unit",
     "eject": "react-scripts eject",
-    "migrate": "knex migrate:latest --knexfile services/db/knexfile.js",
-    "rollback": "knex migrate:rollback --knexfile services/db/knexfile.js"
+    "migrate": "knex migrate:latest --knexfile server/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile server/knexfile.js",
+    "seed": "node scripts/populate-stations.js && node scripts/populate-drones.js"
   },
   "proxy": "http://localhost:3001",
   "devDependencies": {
