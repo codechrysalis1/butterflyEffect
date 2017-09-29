@@ -4,6 +4,7 @@
 
 const fetch = require('isomorphic-fetch');
 const fs = require('fs');
+const data = require('./graph2');
 
 class DroneController {
   constructor(source, destination, options, data) {
@@ -69,7 +70,7 @@ class DroneController {
   }
   
   constructGraph() {
-    this.graph = JSON.parse(fs.readFileSync(__dirname + '/graph2.json'));
+    this.graph = data;
     this.graph.source = {};
     this.graph.destination = {};
 
