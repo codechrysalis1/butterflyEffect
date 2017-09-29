@@ -11,7 +11,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use('/', express.static('build'));
 app.use('/api', api);
+app.use('/*', express.static('build'));
 
 // catch 404 error
 app.use((req, res) => {
